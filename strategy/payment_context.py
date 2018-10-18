@@ -13,7 +13,10 @@ class PaymentContext:
 
     def __init__(self, payment_gateways):
         # check if strategy list ....
-        self._paymentGateways = payment_gateways
+        if type(payment_gateways) != 'list':
+            print("Nooooooo")
+        else:
+            self._paymentGateways = payment_gateways
 
     def pay(self, payment_data):
         # check payment_data instance of  PaymentData

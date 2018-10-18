@@ -19,7 +19,7 @@ class Greenpay(IPaymentGateway):
     def pay(self, payment_info):
         endpoint = self._settings['greenpay']['api_url']
 
-        output = {"greenpay": {"result": {}}}
+        output = {"greenpay": {"result": {}, "server_response": {}}}
         output['greenpay']['sent_data'] = payment_info
         output['greenpay']['result']['response'] = "response=3&transactionid=Not provided"
         output['greenpay']['result']['success'] = False
@@ -27,7 +27,8 @@ class Greenpay(IPaymentGateway):
         try:
             response = requests.post(endpoint, data=payment_info)
             status_code = response.status_code
-
+            response = response.json()
+            output['greenpay']['server_response'] = response
             if status_code == 200:
                 output['greenpay']['server_status'] = "OK"
             if response['success']:

@@ -19,7 +19,7 @@ class Spreedly(IPaymentGateway):
     def pay(self, payment_info):
         endpoint = self._settings['spreedly']['api_url']
 
-        output = {"spreedly": {"result": {}}}
+        output = {"spreedly": {"result": {}, "server_response": {}}}
         output['spreedly']['sent_data'] = payment_info
         output['spreedly']['result']['response'] = "response=3&transactionid=Not provided"
         output['spreedly']['result']['success'] = False
@@ -27,8 +27,11 @@ class Spreedly(IPaymentGateway):
         try:
             response = requests.post(endpoint, data=payment_info)
             status_code = response.status_code
+            response = response.json()
+            output['spreedly']['server_response'] = response
             if status_code == 200:
                 output['spreedly']['result']['server_status'] = "OK"
+
             if response['success']:
                 payment_action, rep_txt = self.get_response_action(response)
                 if str(payment_action) == "1":

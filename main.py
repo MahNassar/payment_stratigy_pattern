@@ -14,10 +14,18 @@ payment_data.user_hash = "hashhhhhhhhhhhhhhhhh"
 payment_data.currency = "EGP"
 payment_data.user_name = "Nassar"
 payment_data.user_email = "teststts@mmmm.com"
-
-for x in range(10):
-    context.pay(payment_data)
-
-print "============================= REPORT =========================="
-
-context.get_payment_report("")
+context.pay(payment_data)
+#
+# for x in range(10):
+#     payment_data.order_id = "11111%d" % x
+#     payment_data.price = 5
+#     payment_data.payment_token = "dddddddddd%d" % x
+#     payment_data.user_hash = "hashhhhhhhhhhhhhhhhh%d" % x
+#     payment_data.currency = "EGP"
+#     payment_data.user_name = "Nassar%d" % x
+#     payment_data.user_email = "teststts@mmmm.com%d" % x
+#     context.pay(payment_data)
+#
+# print "============================= REPORT =========================="
+#
+# context.get_payment_report("")

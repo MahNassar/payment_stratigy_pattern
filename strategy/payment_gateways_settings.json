@@ -1,8 +1,8 @@
 {
   "spreedly": {
-    "api_url": "ffffffffffffffffffffff"
+    "api_url": "http://localhost:8001/deliver"
   },
   "greenpay": {
-    "api_url": "yyyyyyyyyyyyyyyyyyyyy"
+    "api_url": "http://localhost:8001/greenpay_checkout"
   }
 }
